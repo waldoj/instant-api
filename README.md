@@ -25,7 +25,6 @@ To create an API for this JSON file, `committees.json`, with `CommitteeCode` as 
     "AccountId": "a1f8792b-3e82-e111-9bed-984be103f032",
     "CommitteeCode": "PP-12-00458",
     "CommitteeName": "10th District Republican Congressional Committee"
-    "CommitteeType": "Political Party Committee"
   },
   "1": {
     "AccountId": "92b38bad-2583-e111-9bed-984be103f032",
