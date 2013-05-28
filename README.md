@@ -9,7 +9,7 @@ Can cache output as a single serialized object, as individual records in APC, or
 1. Create a directory called `cache`, and give the web server permission to write to it and read from it.
 1. Edit the configuration options at the head of `index.php`:
     * Specify the path to the JSON file as `JSON_FILE`. (You can just drop it in the same directory as `index.php` etc.)
-    * Specify the name of the field in each JSON record that will function as the unique ID for each request.
+    * Specify the name of the field in each JSON record that will function as the unique ID for each request as `INDEXED_FIELD`.
 
 Requests must be in the format of `http://example.com/?id=[unique_id]`. Of course, the directory need not be named `instantapi`, and `mod_rewrite` can be used to eliminate `?id=` from the public URL.
 
