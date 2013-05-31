@@ -4,6 +4,8 @@ A PHP class that makes it trivial to pop up a RESTful, JSON-emitting API from a 
 
 Can cache output as a single serialized object, as individual records in APC, or as individual JSON files on the filesystem.
 
+If you'd prefer this in Python, @jbradforddillon [ported it and made some improvements](https://github.com/jbradforddillon/instant-api-py).
+
 ## Instructions
 1. Install `index.php` and `class.InstantAPI.php` in a public directory on a web server.
 1. Create a directory called `cache`, and give the web server permission to write to it and read from it.
