@@ -13,7 +13,7 @@ If you'd prefer this in Python, @jbradforddillon [ported it and made some improv
     * Specify the path to the JSON file as `JSON_FILE`. (You can just drop it in the same directory as `index.php` etc.)
     * Specify the name of the field in each JSON record that will function as the unique ID for each request as `INDEXED_FIELD`.
 
-Requests must be in the format of `http://example.com/?id=[unique_id]`. Of course, the directory need not be named `instantapi`, and `mod_rewrite` can be used to eliminate `?id=` from the public URL.
+Requests must be in the format of `http://example.com/?id=[unique_id]`. Of course, the directory need not be named `instantapi`, and `mod_rewrite` can be used to eliminate `?id=` from the public URL, so the URL could read `http://example.com/person/jsmith.json`,  or `http://example.com/zipcode/90210.json`.
 
 The first request will prime the cache, and then deliver the requested result. To refresh the cache, such as after updating the JSON file, simply delete all of the files in `cache/`.
 
