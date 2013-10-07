@@ -51,7 +51,7 @@ To create an API for this JSON file, `committees.json`, with `CommitteeCode` as 
 }
 ```
 
-copy `committees.json` into the Instant API directory, set `JSON_FILE` to `committees.json`, and set `INDEXED_FIELD` to `CommitteeCode`. If `CACHE_TYPE` is kept at the default value of `json`, then loading `http://example.com/?id=PP-12-00458` will create five JSON files in `cache`, and then pass the contents of `/cache/PP-12-00458.json` directly to the browser. (The cache directory could be to say, `records`, and the URL `http://example.com/records/PP-12-00458.json` could be queried directly, loading that static file and eliminating the need to invoke Instant API at all.)
+Copy `committees.json` into the Instant API directory, set `JSON_FILE` to `committees.json`, and set `INDEXED_FIELD` to `CommitteeCode`. If `CACHE_TYPE` is kept at the default value of `json`, then loading `http://example.com/?id=PP-12-00458` will create five JSON files in `cache`, and then pass the contents of `/cache/PP-12-00458.json` directly to the browser. (The cache directory could be to say, `records`, and the URL `http://example.com/records/PP-12-00458.json` could be queried directly, loading that static file and eliminating the need to invoke Instant API at all.)
 
 
 ## Requirements
