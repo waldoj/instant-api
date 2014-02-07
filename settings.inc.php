@@ -31,6 +31,6 @@ define('INDEXED_FIELD', '');
 define('CACHE_TYPE', 'json');
 
 /*
- * In what directory should cached material be stored?
+ * If cached within the filesystem, in what directory should cached material be stored?
  */
 define('CACHE_DIRECTORY', 'cache/');
