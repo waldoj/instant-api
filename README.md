@@ -56,6 +56,3 @@ Copy `committees.json` into the Instant API directory, set `JSON_FILE` to `commi
 
 ## Requirements
 * PHP v5.2 or later.
-
-## License
-Copyright Waldo Jaquith, 2013. Released under the MIT License.
