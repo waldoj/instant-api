@@ -26,10 +26,22 @@ class InstantAPI
 	 */
 	function __construct()
 	{
+		
+		/*
+		 * If the specified cache is Memcached, create a new Memcached instance.
+		 */
+		if (CACHE_TYPE == 'memcached')
+		{
+			$this->mc = new Memcached();
+			$this->mc->addServer(MEMCACHED_SERVER, MEMCACHED_PORT);
+		}
+		
 		$this->id = filter_input(INPUT_GET, 'id');
 		$result = $this->retrieve_data();
+		
 		if ($result === FALSE)
 		{
+		
 			$result = $this->parse_json();
 			if ($result === FALSE)
 			{
@@ -45,7 +57,9 @@ class InstantAPI
 			{
 				die('Cannot retrieve data from cache.');
 			}
+			
 		}
+		
 	}
 	
 	/**
@@ -140,6 +154,19 @@ class InstantAPI
 			
 		}
 		
+		elseif (CACHE_TYPE == 'memcached')
+		{
+		
+			/*
+			 * Iterate through all of the records and store each of them within APC.
+			 */
+			foreach ($this->data as $id => $record)
+			{
+				$this->mc->set($id, serialize($record));
+			}
+			
+		}
+		
 		elseif (CACHE_TYPE == 'json')
 		{
 			
@@ -202,6 +229,20 @@ class InstantAPI
 				return FALSE;
 			}
 			$this->record = $record;
+			unset($record);
+			return TRUE;
+			
+		}
+		
+		elseif (CACHE_TYPE == 'memcached')
+		{
+		
+			$this->mc->get($this->id, $result);
+			if ($result === FALSE)
+			{
+				return FALSE;
+			}
+			$this->record = unserialize($record);
 			unset($record);
 			return TRUE;
 			
