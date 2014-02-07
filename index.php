@@ -8,7 +8,7 @@ require('settings.inc.php');
 /*
  * Include the Instant API library.
  */
-include('class.InstantAPI.php');
+require('class.InstantAPI.php');
 
 /*
  * All output will be as JSON.
