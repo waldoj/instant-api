@@ -1,5 +1,19 @@
 <?php
 
+/**
+ * Instant API executable
+ *
+ * This is the file through which requests to Instant API should be made via HTTP.
+ *
+ * LICENSE: MIT
+ *
+ * @author Waldo Jaquith <waldo@jaquith.org>
+ * @copyright 2014 Waldo Jaquith
+ * @license http://opensource.org/licenses/MIT
+ * @link https://github.com/waldoj/instant-api/
+ *
+ */
+
 /*
  * Include the settings.
  */

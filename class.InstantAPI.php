@@ -1,10 +1,28 @@
 <?php
 
+
+/**
+ * Instant API class
+ *
+ * This is the Instant API class, which contains all of the methods required to run the program.
+ *
+ * LICENSE: MIT
+ *
+ * @author Waldo Jaquith <waldo@jaquith.org>
+ * @copyright 2014 Waldo Jaquith
+ * @license http://opensource.org/licenses/MIT
+ * @link https://github.com/waldoj/instant-api/
+ *
+ */
 class InstantAPI
 {
 	
 	/**
+	 * Retreives data and caches it, immediately upon loading
+	 *
 	 * Every time we instantiate InstantAPI(), we want to retrieve data (and possibly cache it).
+	 *
+	 * @return	boolean	TRUE or FALSE, FALSE if data could be retrieved, parsed, or cached.
 	 */
 	function __construct()
 	{
@@ -31,7 +49,11 @@ class InstantAPI
 	}
 	
 	/**
+	 * Parse data from a JSON file
+	 *
 	 * Extract all data from the JSON file and pivot it to be indexed by the specified field.
+	 *
+	 * @return	boolean	TRUE or FALSE, FALSE if JSON could not parsed.
 	 */
 	function parse_json()
 	{
@@ -48,6 +70,11 @@ class InstantAPI
 		 * Load the file in as an object.
 		 */
 		$data = json_decode(file_get_contents(JSON_FILE));
+		
+		if ($data == FALSE)
+		{
+			return FALSE;
+		}
 		
 		/*
 		 * Duplicate the object, creating a new one that uses the committee ID as the key.
@@ -76,9 +103,12 @@ class InstantAPI
 		
 	} // end method parse_json()
 	
-	
 	/**
-	 * Store the JSON file's constituent data.
+	 * Cache data
+	 *
+	 * Store the JSON file's constituent data within the configured cache mechanism.
+	 *
+	 * @return	boolean	TRUE or FALSE, FALSE if JSON could not cached.
 	 */
 	function cache_data()
 	{
@@ -129,7 +159,11 @@ class InstantAPI
 	
 	
 	/**
-	 * Retrieve our cached data.
+	 * Retrieve cached data
+	 *
+	 * Get cached data from the configured cache mechanism.
+	 *
+	 * @return	boolean	TRUE or FALSE, FALSE if JSON could not cached.
 	 */
 	function retrieve_data()
 	{
@@ -190,8 +224,12 @@ class InstantAPI
 	
 } // end class Server
 
-/*
+/**
+ * Format an error as JSON
+ *
  * Return a JSON-formatted error message, to permit parsing and rendering by the client.
+ *
+ * @return	string	JSON-formatted data
  */
 function json_error($message = 'A fatal error occurred.', $http_code = '400 Bad Request')
 {
