@@ -2,20 +2,22 @@
 
 A PHP class that makes it trivial to pop up a RESTful, JSON-emitting API from a single JSON file. Intended for retrieving individual records from a JSON file that is comprised of many records. It indexes records by a specified field, which functions as the unique ID.
 
-Can cache output as a single serialized object, as individual records in APC, or as individual JSON files on the filesystem.
+It caches API data as a single serialized object, in APC, in Memcached, or as individual JSON files on the filesystem.
 
 If you'd prefer this in Python, @jbradforddillon [ported it and made some improvements](https://github.com/jbradforddillon/instant-api-py).
 
 ## Instructions
 1. Install `index.php` and `class.InstantAPI.php` in a public directory on a web server.
-1. Create a directory called `cache`, and give the web server permission to write to it and read from it.
-1. Edit the configuration options at the head of `index.php`:
+1. If you want to cache data on the filesystem, create a directory called `cache`, and give the web server permission to write to it and read from it.
+1. Edit the configuration options in `settings.inc.php`:
     * Specify the path to the JSON file as `JSON_FILE`. (You can just drop it in the same directory as `index.php` etc.)
     * Specify the name of the field in each JSON record that will function as the unique ID for each request as `INDEXED_FIELD`.
+    * Specify the type of caching that you want to use.
+    * If caching in Memcached, provide the server name (`MEMCACHED_SERVER`) and port (`MEMCACHED_PORT`).
 
 Requests must be in the format of `http://example.com/?id=[unique_id]`. Of course, the directory need not be named `instantapi`, and `mod_rewrite` can be used to eliminate `?id=` from the public URL, so the URL could read `http://example.com/person/jsmith.json`,  or `http://example.com/zipcode/90210.json`.
 
-The first request will prime the cache, and then deliver the requested result. To refresh the cache, such as after updating the JSON file, simply delete all of the files in `cache/`.
+The first request will prime the cache and then deliver the requested result; subsequent requests will be served from the cache. To force a refresh of the filesystem cache, such as after updating the master JSON file, simply delete all of the files in `cache/`.
 
 ## Example
 
